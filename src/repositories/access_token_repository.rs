@@ -9,7 +9,8 @@ use uuid::Uuid;
 use crate::{
     models::{
         access_token::{
-            AccessToken, AccessTokenCreatePayloadWithAccessToken, AccessTokenFilter, AccessTokenSortOrder, AccessTokenUpdatePayload
+            AccessToken, AccessTokenCreatePayloadWithAccessToken, AccessTokenFilter,
+            AccessTokenSortOrder, AccessTokenUpdatePayload,
         },
         pagination::Pagination,
     },
@@ -25,7 +26,6 @@ impl AccessTokenRepository {
     pub fn new(pool: Arc<sqlx::postgres::PgPool>) -> Self {
         Self { pool }
     }
-
 }
 
 #[async_trait]
@@ -66,8 +66,6 @@ impl Repository<AccessToken> for AccessTokenRepository {
             Err(error) => Err(error.into()),
         }
     }
-
-
 
     async fn read(&self, id: Uuid) -> Result<Option<AccessToken>, Error> {
         let access_token = sqlx::query_as!(

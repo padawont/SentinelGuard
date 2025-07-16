@@ -154,7 +154,7 @@ impl Repository<Project> for ProjectRepository {
     }
 
     async fn delete(&self, id: Uuid) -> Result<bool, Error> {
-        let result = sqlx::query!("DELETE FROM projects WHERE id = $1", id,)
+        let result = sqlx::query!("DELETE FROM projects WHERE id = $1", id)
             .execute(&*self.pool)
             .await;
 

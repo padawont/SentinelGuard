@@ -1,12 +1,12 @@
 use crate::models::pagination::Pagination;
+use crate::models::project_access::ProjectAccessCreatePayload;
 use crate::models::project_access::{
     ProjectAccessFilter, ProjectAccessResponse, ProjectAccessSortOrder,
     ProjectAccessSortableFields, ProjectAccessUpdatePayload,
 };
 use crate::models::sort::SortOrder;
-use crate::repositories::project_access_repository::ProjectAccessRepository;
 use crate::repositories::base::Repository;
-use crate::models::project_access::ProjectAccessCreatePayload;
+use crate::repositories::project_access_repository::ProjectAccessRepository;
 use actix_web::{Error, HttpResponse, web};
 use uuid::Uuid;
 

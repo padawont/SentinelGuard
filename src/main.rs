@@ -1,7 +1,7 @@
 use actix_web::HttpServer;
 use sentinel_guard::config::AppConfig;
-use sentinel_guard::routes::register::register_routes;
 use sentinel_guard::repositories::register::register_repositories;
+use sentinel_guard::routes::register::register_routes;
 use sentinel_guard::utils::swagger::get_swagger_ui;
 use sqlx::postgres::PgPool;
 use std::{sync::Arc, time::Duration};

@@ -22,12 +22,13 @@ where
             InitError = (),
         >,
 {
-    app
-        .app_data(web::Data::new(ProjectRepository::new(pool.clone())))
+    app.app_data(web::Data::new(ProjectRepository::new(pool.clone())))
         .app_data(web::Data::new(ServiceAccountRepository::new(pool.clone())))
         .app_data(web::Data::new(ProjectScopeRepository::new(pool.clone())))
         .app_data(web::Data::new(EnvironmentRepository::new(pool.clone())))
         .app_data(web::Data::new(ProjectAccessRepository::new(pool.clone())))
-        .app_data(web::Data::new(ProjectAccessScopesRepository::new(pool.clone())))
+        .app_data(web::Data::new(ProjectAccessScopesRepository::new(
+            pool.clone(),
+        )))
         .app_data(web::Data::new(EnvironmentKeyRepository::new(pool.clone())))
 }

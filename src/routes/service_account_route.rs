@@ -4,8 +4,8 @@ use crate::models::service_account::{
     ServiceAccountSortOrder, ServiceAccountSortableFields, ServiceAccountUpdatePayload,
 };
 use crate::models::sort::SortOrder;
-use crate::repositories::service_account_repository::ServiceAccountRepository;
 use crate::repositories::base::Repository;
+use crate::repositories::service_account_repository::ServiceAccountRepository;
 use actix_web::{Error, HttpResponse, web};
 
 #[utoipa::path(
@@ -73,7 +73,9 @@ pub async fn patch(
     id: web::Path<uuid::Uuid>,
     payload: web::Json<ServiceAccountUpdatePayload>,
 ) -> Result<HttpResponse, Error> {
-    let service_account = repository.update(id.into_inner(), payload.into_inner()).await;
+    let service_account = repository
+        .update(id.into_inner(), payload.into_inner())
+        .await;
     if service_account.is_err() {
         let error_message = service_account.unwrap_err().to_string();
         match error_message.as_str() {
@@ -89,7 +91,7 @@ pub async fn patch(
             }
             _ => {
                 return Err(actix_web::error::ErrorInternalServerError(error_message));
-            },
+            }
         }
     }
     Ok(HttpResponse::Ok().json(service_account.unwrap()))

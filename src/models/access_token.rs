@@ -78,7 +78,6 @@ impl From<AccessTokenCreatePayloadWithAccessToken> for AccessTokenCreatePayload 
     }
 }
 
-
 #[derive(Debug, Serialize, Deserialize, Clone, ToSchema)]
 pub struct AccessTokenUpdatePayload {
     pub active: Option<bool>,

@@ -2,7 +2,9 @@ use std::sync::Arc;
 
 use sentinel_guard::{
     models::{
-        access_token::{AccessTokenCreatePayloadWithAccessToken, AccessTokenFilter, AccessTokenUpdatePayload},
+        access_token::{
+            AccessTokenCreatePayloadWithAccessToken, AccessTokenFilter, AccessTokenUpdatePayload,
+        },
         pagination::Pagination,
     },
     repositories::{access_token_repository::AccessTokenRepository, base::Repository},

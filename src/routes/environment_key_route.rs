@@ -4,8 +4,8 @@ use crate::models::environment_key::{
 };
 use crate::models::pagination::Pagination;
 use crate::models::sort::SortOrder;
-use crate::repositories::environment_key_repository::EnvironmentKeyRepository;
 use crate::repositories::base::Repository;
+use crate::repositories::environment_key_repository::EnvironmentKeyRepository;
 use actix_web::{Error, HttpResponse, web};
 use serde_json::json;
 use uuid::Uuid;

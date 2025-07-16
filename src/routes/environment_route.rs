@@ -4,8 +4,8 @@ use crate::models::environment::{
 };
 use crate::models::pagination::Pagination;
 use crate::models::sort::SortOrder;
-use crate::repositories::environment_repository::EnvironmentRepository;
 use crate::repositories::base::Repository;
+use crate::repositories::environment_repository::EnvironmentRepository;
 use actix_web::{Error, HttpResponse, web};
 
 #[utoipa::path(
@@ -73,7 +73,9 @@ pub async fn patch(
     id: web::Path<uuid::Uuid>,
     payload: web::Json<EnvironmentUpdatePayload>,
 ) -> Result<HttpResponse, Error> {
-    let environment = repository.update(id.into_inner(), payload.into_inner()).await;
+    let environment = repository
+        .update(id.into_inner(), payload.into_inner())
+        .await;
     if environment.is_err() {
         let error_message = environment.unwrap_err().to_string();
         match error_message.as_str() {

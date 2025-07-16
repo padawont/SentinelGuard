@@ -4,8 +4,8 @@ use crate::models::project_access_scopes::{
     ProjectAccessScopeSortOrder, ProjectAccessScopeSortableFields, ProjectAccessScopeUpdatePayload,
 };
 use crate::models::sort::SortOrder;
-use crate::repositories::project_access_scopes_repository::ProjectAccessScopesRepository;
 use crate::repositories::base::Repository;
+use crate::repositories::project_access_scopes_repository::ProjectAccessScopesRepository;
 use actix_web::{Error, HttpResponse, web};
 use uuid::Uuid;
 
@@ -79,7 +79,9 @@ pub async fn patch(
     id: web::Path<Uuid>,
     payload: web::Json<ProjectAccessScopeUpdatePayload>,
 ) -> Result<HttpResponse, Error> {
-    let project_access_scope = repository.update(id.into_inner(), payload.into_inner()).await;
+    let project_access_scope = repository
+        .update(id.into_inner(), payload.into_inner())
+        .await;
     if let Err(error) = project_access_scope {
         let error_message = error.to_string();
         match error_message.as_str() {

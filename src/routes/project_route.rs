@@ -1,11 +1,11 @@
 use crate::models::pagination::Pagination;
+use crate::models::project::{ProjectCreatePayload, ProjectUpdatePayload};
 use crate::models::project::{
     ProjectFilter, ProjectResponse, ProjectSortOrder, ProjectSortableFields,
 };
 use crate::models::sort::SortOrder;
-use crate::repositories::project_repository::ProjectRepository;
 use crate::repositories::base::Repository;
-use crate::models::project::{ProjectCreatePayload, ProjectUpdatePayload};
+use crate::repositories::project_repository::ProjectRepository;
 use actix_web::{Error, HttpResponse, web};
 
 #[utoipa::path(
@@ -72,7 +72,9 @@ pub async fn patch(
     id: web::Path<uuid::Uuid>,
     payload: web::Json<ProjectUpdatePayload>,
 ) -> Result<HttpResponse, Error> {
-    let project = repository.update(id.into_inner(), payload.into_inner()).await;
+    let project = repository
+        .update(id.into_inner(), payload.into_inner())
+        .await;
     if project.is_err() {
         let error_message = project.unwrap_err().to_string();
         match error_message.as_str() {
